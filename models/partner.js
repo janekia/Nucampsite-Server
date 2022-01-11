@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const partnerSchema = new Schema ({
+const partnerSchema = new Schema({
     name: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     image: {
         type: String,
@@ -13,14 +12,15 @@ const partnerSchema = new Schema ({
     },
     featured: {
         type: Boolean,
-        required: true
+        default: false
     },
     description: {
         type: String,
         required: true
     }
-}, {
-    timestampes: true
+},
+{
+    timestamps: true
 });
 
 const Partner = mongoose.model('Partner', partnerSchema);
