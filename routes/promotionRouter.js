@@ -1,7 +1,7 @@
 const express = require('express');
-const Promotion = require('../models/promotion');
-const authenticate = require('../authenticate');
 const cors = require('./cors');
+const Promotion = require('../models/promotion');
+const authenticate = require('../authenticate')
 
 const promotionRouter = express.Router();
 
@@ -24,9 +24,9 @@ promotionRouter.route('/')
         res.setHeader('Content-Type', 'application/json');
         res.json(promotion);
     })
-    .catch(err => next(err));
+    .catch(err => next(err))
 })
-.put(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res) => {
+.put(cors.corsWithOptions, authenticate.verifyUser, (req, res) => {
     res.statusCode = 403;
     res.end('PUT operation not supported on /promotions');
 })
@@ -67,7 +67,7 @@ promotionRouter.route('/:promotionId')
     .catch(err => next(err));
 })
 .delete(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-    Promotion.findByIdAndDelete(req.params.promotionId)
+    Promotion.findByIdAndDelete(req.params.campsiteId)
     .then(response => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
